@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        let counter = 0;
+        const root = document.querySelector('#root');
+
+        const _Title = () =>
+                        (<h3 
+                            id='title' 
+                            style={{color: "red", fontSize: "2rem"}} 
+                            onMouseEnter={() => console.log("I have been MouseEntered!")}>
+                            I have been {counter} clicked
+                        </h3>);
+                        
+        const _Button = () =>
+                        (<button 
+                            style={{fontSize: "2rem", backgroundColor: "blue", color: "white"}}
+                            onClick={() => {
+                                counter++
+                                console.log(`I have been ${counter} clicked!!!`);
+                            }}>
+                            Click Me!!!
+                        </button>);
+
+        const _Comment = () => (<p>React is awesome!!!</p>);
+
+        const _Container = () => (<div> <_Title/> <_Button/> <_Comment/> </div>);
+        ReactDOM.render(<_Container/>, root);
+    </script>
+</body>
+</html>
+

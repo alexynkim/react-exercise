@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        let counter = 0;
+        const root = document.querySelector('#root');
+
+        function onClickHandler() {
+            counter++;
+            console.log(`I have been ${counter} clicked!!!`);
+            reRender();
+        }
+
+        function reRender() {
+            ReactDOM.render(<_Container/>, root);
+        }
+
+        const _Container = () => (
+                <div>
+                    <h3>I have been {counter} clicked</h3>
+                    <button style={{fontSize: "2rem", backgroundColor: "blue", color: "white"}}
+                            onClick={onClickHandler}>
+                            Click Me!!!
+                    </button>
+                    <p style={{fontSize: "1.5rem"}}>React is awesome!!!</p>
+                </div>
+            );
+        reRender();
+    </script>
+</body>
+</html>

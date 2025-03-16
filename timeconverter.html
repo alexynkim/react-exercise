@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+    
+        const root = document.querySelector('#root');
+        let minLeft, secLeft;
+
+        function App() {
+            const [currSec, setSec] = React.useState("");
+            const [currMin, setMin] = React.useState("");
+            const [currHour, setHour] = React.useState("");
+
+            const onChangeSec = (e) => {
+                const min = Math.floor((e.target.value / 60));
+                const hour = Math.floor((min / 60));
+
+                secLeft = e.target.value%60;
+                minLeft = min%60;
+
+                setSec(e.target.value);
+                setMin(min);
+                setHour(hour);
+            };
+            const onChangeMin = (e) => {
+                const hour = Math.floor((e.target.value / 60));
+                const sec = e.target.value * 60;
+
+                secLeft = 0;
+                minLeft = e.target.value%60;
+
+                setSec(sec);
+                setMin(e.target.value);
+                setHour(hour);
+            };
+
+            const onChangeHour = (e) => {
+                const min = e.target.value * 60;
+                const sec = min * 60;
+
+                secLeft = minLeft = 0;
+
+                setSec(sec);
+                setMin(min);
+                setHour(e.target.value);
+            };
+
+            const onClickReset = () => {
+                setSec("");
+                setMin("");
+                setHour("");
+            };
+            
+            return (
+                <div>
+                    <h1>Time Converter</h1>
+                    <div>
+                        <label htmlFor="seconds">Seconds:</label>
+                        <input 
+                            value={currSec}
+                            type="number" 
+                            id="seconds" 
+                            onChange={onChangeSec}/>
+                        <h4>Current Seconds : {currSec}s</h4>
+                    </div>
+                    <div>
+                        <label htmlFor="minutes">Minutes:</label>
+                        <input 
+                            value={currMin}
+                            type="number" 
+                            id="minutes" 
+                            onChange={onChangeMin}/>
+                        <h4>Current Minutes : {currMin}m {secLeft}s</h4>
+                    </div>
+                    <div>
+                        <label htmlFor="hours">Hours:</label>
+                        <input 
+                            value={currHour}
+                            type="number" 
+                            id="hours" 
+                            onChange={onChangeHour}/>
+                        <h4>Current Hours : {currHour}h {minLeft}m {secLeft}s </h4>
+                    </div>
+                    <button
+                        onClick={onClickReset}>Reset</button>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App/>, root);
+    </script>
+</body>
+</html>

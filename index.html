@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React JS for begginer</title>
+</head>
+<body>
+    <span id="num-Click">Total Clicks: 0 </span> 
+    <button id="check-Btn">Click me!!!</button>
+</body>
+<script>
+    let counter = 0;
+    const nClicked = document.getElementById('num-Click');
+    const btn = document.getElementById('check-Btn');
+    btn.addEventListener('click', () => {
+        counter++;
+        console.log(`I have been ${counter} cliked!`);
+        nClicked.innerText = `Total Clicks: ${counter}`;
+    });
+</script>
+</html>
